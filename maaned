@@ -1,0 +1,76 @@
+namespace kontrol_måneder
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        private int no1;
+        private int no2;
+        private int no3;
+        private int no4;
+
+        
+        
+
+        private bool AreNumbersValid()
+        {
+            bool isTal1Valid = int.TryParse(felt1.Text, out no1);
+            bool isTal2Valid = int.TryParse(felt2.Text, out no2);
+            bool isTal3Valid = int.TryParse(felt3.Text, out no3);
+            bool isTal4Valid = int.TryParse(felt4.Text, out no4);
+
+            if (isTal1Valid == true && isTal2Valid == true && isTal3Valid == true && isTal4Valid == true)
+            {
+                return true;
+                
+            }
+            return false;
+
+        }
+
+        private int GetBiggestNumber()
+        {
+            int biggest = 1; //biggest = 1 sættes til den laveste mulige, så man kan tjekke dem op mod hinanden.
+
+            if (no1 > biggest) // ved hvert nummer tjekker du dem op mod hinanden. Biggest ændres hver gang.
+                biggest = no1;
+
+            if (no2 > biggest)
+                biggest = no2;
+
+            if (no3 > biggest)
+                biggest = no3;
+
+            if (no4 > biggest)
+                biggest = no4;
+
+            return biggest;
+        }
+
+        
+
+        private bool ValuesWithinRange()
+        {
+            bool isTal1WithinRange = no1 > 0 && no1 < 13;
+            bool isTal2WithinRange = no2 > 0 && no2 < 13;
+            bool isTal3WithinRange = no3 > 0 && no3 < 13;
+            bool isTal4WithinRange = no4 > 0 && no4 < 13;
+
+            if (isTal1WithinRange == true && isTal2WithinRange == true && isTal3WithinRange == true && isTal4WithinRange == true)
+            {
+                return true;
+            }
+            return false;
+         }
+
+        private void knap_Click(object sender, EventArgs e)
+        {
+            ValuesWithinRange();
+            AreNumbersValid();
+            textBoxResult.Text = GetBiggestNumber().ToString();
+
+        }
+    }
+}
